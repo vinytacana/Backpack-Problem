@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include "binary.h"
 #include "binario.cpp"
 using namespace std;
@@ -77,11 +78,35 @@ unsigned short Value(unsigned short sol){
     }
     return totalValue;
 }
-int main(void)
-{
+bool result(unsigned short sol, unsigned short weightLimit){
+    unsigned short weight = Weight(sol);
+    unsigned short value = Value(sol);
+    if(weight<=weightLimit){
+        cout << "\033[32mOK\033[0m" << endl;
+        return true;
+    }else{
+        cout << "\033[31mX\033[0m" << endl;
+        return false;
+    }
 
-    unsigned short result;
-    result = onePoint(60504, 25000);
+}
+int main(void)
+{   
+    unsigned short sol[6];
+    unsigned short weightlimit= 20;
+
+    cout<< "Insira 6 solucoes(valores inteiros de 0 a 65535): "<<endl;
+    for(int i=0;i<6;i++){
+        cin>> sol[i];
+    }
+
+    cout << "Resultado da Avaliação" << endl;
+    cout << "-----------------------" << endl;
+    for (int i = 0; i < 6; i++) {
+        result(sol[i], weightlimit);
+    }
+    //unsigned short result;
+    //result = onePoint(60504, 25000);
     // saida esperada: 60.584
     // result = Aritmetic(12329, 38054);
     // result = Simple(1259 );
