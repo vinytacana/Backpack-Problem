@@ -17,11 +17,11 @@ unsigned short onePoint(unsigned short a, unsigned short b)
     unsigned short novo;
     estado1 = highBits(a);
     estado2 = lowBits(b);
-    novo = (estado1 << 8)|estado2;
+    novo = (estado1 << 8) | estado2;
     return novo;
 }
 
-unsigned short Aritmetic(unsigned short a, unsigned short b)
+unsigned short Arithmetic(unsigned short a, unsigned short b)
 {
     /*1ºpt:o cruzamento tipo aritmético gera uma nova solução a partir de
     duas existentes, usando o bit 1 nas posições em que
@@ -35,34 +35,57 @@ unsigned short Aritmetic(unsigned short a, unsigned short b)
     result = binaryAnd(a, b);
     return result;
 }
-unsigned short Simple(unsigned short a){
-    /*Simples: a mutação simples modifica um bit de uma solução existente, obtendo 
+unsigned short SimpleMutation(unsigned short a)
+{
+    /*Simples: a mutação simples modifica um bit de uma solução existente, obtendo
 assim uma nova solução. */
     unsigned short result;
     result = ligarBit(a, 9);
     return result;
 }
 
-unsigned short Pair(unsigned short a){
-    /*Dupla: a mutação dupla tem o mesmo comportamento da simples, mas a nova 
+unsigned short doubleMutation(unsigned short a)
+{
+    /*Dupla: a mutação dupla tem o mesmo comportamento da simples, mas a nova
     solução tem dois bits modificados, no lugar de apenas um. */
-/*  Instrucao: Mutação Dupla: recebe um valor inteiro representando uma
-    solução e retorna um valor 
-    inteiro representando a mutação dupla da solução. */
+    /*  Instrucao: Mutação Dupla: recebe um valor inteiro representando uma
+        solução e retorna um valor
+        inteiro representando a mutação dupla da solução. */
     unsigned short estado;
     estado = ligarBit(a, 3);
     estado = ligarBit(estado, 12);
     return estado;
 }
+unsigned short Weight(unsigned short sol)
+{
+    unsigned short weight[16] = {12, 3, 5, 4, 9, 1, 2, 3, 4, 1, 2, 4, 5, 2, 4, 1};
+    unsigned short totalValue = 0;
+    for(int i =0; i <16;i++){
+        if(sol&(1<<i)){
+            totalValue+=weight[i];
+        }
+    }
+    return totalValue;
+}
+unsigned short Value(unsigned short sol){
+    unsigned short value[16] = {4, 4, 8, 10, 15, 3, 1, 1, 2, 10, 20, 15, 10, 3, 4, 12};
+    unsigned short totalValue = 0;
+    for(int i=0;i<16;i++){
+        if(sol&(1<<i)){
+            totalValue+=value[i];
+        }
+    }
+    return totalValue;
+}
 int main(void)
 {
-    
+
     unsigned short result;
     result = onePoint(60504, 25000);
     // saida esperada: 60.584
-    //result = Aritmetic(12329, 38054);
-    //result = Simple(1259 );
-    //result= Pair(732);
+    // result = Aritmetic(12329, 38054);
+    // result = Simple(1259 );
+    // result= Pair(732);
     cout << result << endl;
     return 0;
 }
