@@ -1,8 +1,7 @@
 # Bitwise Operators in C++
 This repository contains problems I solved while learning about bitwise operators in C++. Bitwise operations are essential in low-level programming and optimization tasks. By working through these problems, I deepened my understanding in c++
+
 ## Overview
-
-
 
 The program performs several tasks using bitwise operators, such as:
 
