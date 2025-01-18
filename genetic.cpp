@@ -59,7 +59,8 @@ unsigned short doubleMutation(unsigned short a)
 }
 unsigned short Weight(unsigned short sol)
 {
-    unsigned short weight[16] = {12, 3, 5, 4, 9, 1, 2, 3, 4, 1, 2, 4, 5, 2, 4, 1};
+    unsigned short weight[16] = {1, 4, 2, 5, 4, 2, 1, 4, 3, 2, 1, 9, 4, 5, 3, 12};
+    //12, 3, 5, 4, 9, 1, 2, 3, 4, 1, 2, 4, 5, 2, 4, 1
     unsigned short totalValue = 0;
     for(int i =0; i <16;i++){
         if(sol&(1<<i)){
